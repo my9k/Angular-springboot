@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1 # for versions before 1.14 use extensions/v1beta1
+kind: Ingress
+metadata:
+  name: food-app-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /?(.*)
+          pathType: Prefix
+          backend:
+            service:
+              name: angular-ap         
+              Port: 80
+        - path: /api/?(.*)
+          pathType: Prefix
+          backend:
+            service:
+               name: spring-app2
+               port: 9001

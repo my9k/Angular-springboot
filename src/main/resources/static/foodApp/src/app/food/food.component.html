@@ -1,0 +1,20 @@
+<div class="container-fluid">
+<table border="1">
+    <thead></thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      </tr>
+    
+    <tbody>
+        <tr *ngFor="let f of food">
+            <td>{{f.id}}</td>
+            <td>{{f.name}}</td>
+            <td>{{f.price}}</td>
+            <td><button class="btn btn-danger" (click)="deleteFood(f)"> Delete Food</button></td>
+            <td><button class="btn btn-success" (click)="updateFood(f.id)">Edit Food</button></td>
+            </tr>
+    </tbody>
+      </table>
+    </div>

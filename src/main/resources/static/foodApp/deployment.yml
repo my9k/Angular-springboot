@@ -1,0 +1,37 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: angular-ap
+  labels:
+    name: angular-ap
+spec:
+  ports:
+    - nodePort: 30111 
+      port: 80     
+      targetPort: 80 
+      protocol: TCP
+  selector:           
+    app: angular-ap
+  type: NodePort       
+
+---
+apiVersion: apps/v1 
+kind: Deployment    
+metadata:              
+  name: angular-ap
+spec:                
+  selector:         
+    matchLabels:
+      app: angular-ap
+  replicas: 3        
+  template:
+    metadata:
+      labels:        
+        app: angular-ap
+    spec:
+      containers:
+        - name: angular-ap
+          image: mayankt1/angular-app:latest
+          ports:
+            - containerPort: 80                
+         
